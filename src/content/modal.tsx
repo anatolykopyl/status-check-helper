@@ -37,13 +37,19 @@ function insertButton() {
 }
 
 export default () => {
-  window.addEventListener('DOMNodeInserted', (event) => {
-    const target = event.target as HTMLElement;
-    const headerElement = target?.querySelector?.('#jira-issue-header')
+  const config = { attributes: true, childList: true, subtree: true };
+  const observer = new MutationObserver((mutationList, observer) => {
+    for (const mutation of mutationList) {
+      if (mutation.type === 'childList') {
+        const target = mutation.target as HTMLElement;
+        const headerElement = target?.querySelector?.('#jira-issue-header');
 
-    if (headerElement) {
-      console.log(headerElement)
-      insertButton()
+        if (headerElement) {
+          insertButton()
+        }
+      }
     }
-  })
+  });
+
+  observer.observe(document, config);
 }

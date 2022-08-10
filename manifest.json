@@ -1,15 +1,20 @@
 {
   "manifest_version": 3,
   "name": "Status Check Hepler",
-  "description": "",
-  "version": "0.0.0",
+  "description": "Helps you gather and format tasks for status checks",
+  "version": "0.0.1",
+  "icons": { 
+    "16": "public/icons/16.png",
+    "32": "public/icons/32.png",
+    "192": "public/icons/192.png"
+  },
   "action": {
     "default_popup": "index.html"
   },
   "content_scripts": [
     {
       "matches": ["https://*.atlassian.net/jira/*"],
-      "js": ["src/content/index.ts"]
+      "js": ["./src/content/index.ts"]
     }
   ],
   "permissions": [
