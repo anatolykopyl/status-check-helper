@@ -1,0 +1,46 @@
+#app {
+  margin: 0 auto;
+  padding: 32px;
+  position: relative;
+}
+
+h1 {
+  margin: 0;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: 14px/1.5 sans-serif;
+  margin-bottom: 4px;
+}
+
+.task:hover .deleteTask {
+  visibility: visible;
+}
+
+.deleteTask {
+  cursor: pointer;
+  padding: 0 8px;
+  flex-shrink: 0;
+  visibility: hidden;
+  height: 24px;
+}
+
+.deleteTask>svg {
+  width: 24px;
+  height: 24px;
+}
+
+.buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.button {
+  padding: 8px 10px;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+}

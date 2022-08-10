@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Status Check Hepler",
+  "description": "",
+  "version": "0.0.0",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.atlassian.net/jira/*"],
+      "js": ["src/content/index.ts"]
+    }
+  ],
+  "permissions": [
+    "storage"
+  ]
+}

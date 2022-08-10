@@ -1,0 +1,20 @@
+{
+  "name": "status-check-helper",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "preact": "^10.9.0"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^1.0.13",
+    "@preact/preset-vite": "^2.3.0",
+    "@types/chrome": "^0.0.193",
+    "typescript": "^4.6.4",
+    "vite": "^3.0.0"
+  }
+}
