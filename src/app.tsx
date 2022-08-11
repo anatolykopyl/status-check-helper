@@ -5,17 +5,10 @@ import SettingsView from './views/settings'
 import GearIcon from './icons/gear'
 
 export function App() {
-  const [view, setView] = useState(<HomeView />)
-  const [viewName, setViewName] = useState('Home')
+  const [view, setView] = useState('HomeView')
 
   function toggleView() {
-    if (viewName === 'Home') {
-      setView(<SettingsView />)
-      setViewName('Settings')
-    } else {
-      setView(<HomeView />)
-      setViewName('Home')
-    }
+    setView(view === 'HomeView' ? 'SettingsView' : 'HomeView')
   }
 
   return (
@@ -31,7 +24,9 @@ export function App() {
       </nav>
 
       <main class="main">
-        {view}
+        {view === 'HomeView' ?
+          <HomeView /> :
+          <SettingsView />}
       </main>
     </>
   )

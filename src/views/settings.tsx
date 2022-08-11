@@ -2,7 +2,7 @@ import { useState, useEffect } from 'preact/hooks';
 
 export default function SettingsView() {
   const [prefix, setPrefix] = useState('');
-  const [separator, setSeparator] = useState(' - ');
+  const [separator, setSeparator] = useState('');
   const [postfix, setPostfix] = useState('');
 
   function updatePrefix(e: Event) {
@@ -25,9 +25,9 @@ export default function SettingsView() {
 
   useEffect(() => {
     chrome.storage.sync.get(['prefix', 'separator', 'postfix'], (result) => {
-      setPrefix(result.prefix);
-      setSeparator(result.separator);
-      setPostfix(result.postfix);
+      setPrefix(result.prefix ?? '');
+      setSeparator(result.separator ?? ' - ');
+      setPostfix(result.postfix ?? '');
     });
   }, []);
 

@@ -8,7 +8,7 @@ export default function HomeView() {
   const [hostname, setHostname] = useState('');
   const [copied, setCopied] = useState(false);
   const [prefix, setPrefix] = useState('');
-  const [separator, setSeparator] = useState(' - ');
+  const [separator, setSeparator] = useState('');
   const [postfix, setPostfix] = useState('');
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function HomeView() {
   async function getFormatting() {
     const result = await chrome.storage.sync.get(['prefix', 'separator', 'postfix']);
     setPrefix(result.prefix ?? '');
-    setSeparator(result.separator ?? '');
+    setSeparator(result.separator ?? ' - ');
     setPostfix(result.postfix ?? '');
   }
 
