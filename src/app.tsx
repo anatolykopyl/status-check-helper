@@ -1,107 +1,38 @@
-import { useEffect, useState } from 'preact/hooks'
+import { useState } from 'preact/hooks'
 import './app.css'
-import ClipboardIcon from './icons/clipboard'
-import ClipboardCheckIcon from './icons/clipboardCheck';
-import CrossIcon from './icons/cross';
+import HomeView from './views/home'
+import SettingsView from './views/settings'
+import GearIcon from './icons/gear'
 
 export function App() {
-  const [tasks, setTasks] = useState({});
-  const [hostname, setHostname] = useState('');
-  const [copied, setCopied] = useState(false);
+  const [view, setView] = useState(<HomeView />)
+  const [viewName, setViewName] = useState('Home')
 
-  useEffect(() => {
-    getTasks()
-    getHostname()
-  }, []);
-
-  async function getTasks() {
-    const result = await chrome.storage.sync.get(['tasks']);
-    setTasks(result.tasks);
-  }
-
-  async function getHostname() {
-    const result = await chrome.storage.sync.get(['hostname']);
-    setHostname(result.hostname);
-    console.log(result.hostname);
-  }
-
-  function tasksText() {
-    const base = 'https://' + hostname + '/browse/'
-
-    let value = '<ul>'
-
-    for (const key in tasks) {
-      value += `<li><a href="${base + key}">${key}</a> - ${tasks[key as keyof typeof tasks]}</li>`
+  function toggleView() {
+    if (viewName === 'Home') {
+      setView(<SettingsView />)
+      setViewName('Settings')
+    } else {
+      setView(<HomeView />)
+      setViewName('Home')
     }
-
-    value += '</ul>'
-
-    return value;
-  }
-
-  function copyToClipboard() {
-    function listener(event: ClipboardEvent) {
-      event.clipboardData?.setData("text/html", tasksText());
-      event.clipboardData?.setData("text/plain", tasksText());
-      event.preventDefault();
-    }
-
-    document.addEventListener("copy", listener);
-    document.execCommand('copy');
-    document.removeEventListener("copy", listener);
-
-    setCopied(true);
-  }
-
-  function deleteTask(id: string) {
-    const newTasks = { ...tasks };
-    delete newTasks[id as keyof typeof tasks];
-    setTasks(newTasks);
-    chrome.storage.sync.set({ tasks: newTasks });
-  }
-
-  function resetStorage() {
-    chrome.storage.sync.clear()
-    setTasks({});
   }
 
   return (
     <>
-      <h1>Status Check Helper</h1>
-
-      <ul id='tasks'>
-        {Object.keys(tasks).map(key => {
-          return (
-            <li>
-              <div class="task">
-                <span>{key} - {tasks[key as keyof typeof tasks]}</span>
-                <div
-                  class="deleteTask"
-                  onClick={() => deleteTask(key)}
-                >
-                  <CrossIcon />
-                </div>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-
-      <div class="buttons">
+      <nav class="nav">
+        <h1 class="nav__title">Status Check Helper</h1>
         <button
-          onClick={copyToClipboard}
-          class="button"
+          class="nav__settings"
+          onClick={toggleView}
         >
-          {copied ? <ClipboardCheckIcon /> : <ClipboardIcon />}
-          Copy to clipboard
+          <GearIcon />
         </button>
-        <button
-          onClick={resetStorage}
-          class="button"
-        >
-          Clear all
-        </button>
-      </div>
+      </nav>
+
+      <main class="main">
+        {view}
+      </main>
     </>
   )
 }

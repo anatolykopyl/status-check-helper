@@ -1,26 +1,67 @@
 #app {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
   margin: 0 auto;
-  padding: 32px;
   position: relative;
 }
 
-h1 {
+.nav {
+  border-bottom: 1px solid var(--border-clr);
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__title {
+  margin: 0;
+  font-size: 32px;
+}
+
+.nav__settings {
+  cursor: pointer;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+.main {
+  padding: 16px 32px;
+  box-sizing: border-box;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.home__tasks {
   margin: 0;
 }
 
-.task {
+.home__tasks__task {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font: 14px/1.5 sans-serif;
   margin-bottom: 4px;
 }
 
-.task:hover .deleteTask {
+.home__tasks__task:hover .home__tasks__task__deleteTask {
   visibility: visible;
 }
 
-.deleteTask {
+.home__tasks__task__deleteTask {
   cursor: pointer;
   padding: 0 8px;
   flex-shrink: 0;
@@ -28,19 +69,30 @@ h1 {
   height: 24px;
 }
 
-.deleteTask>svg {
+.home__tasks__task__deleteTask>svg {
   width: 24px;
   height: 24px;
 }
 
-.buttons {
+.home__buttons {
   display: flex;
   gap: 16px;
 }
 
-.button {
+.home__buttons__button {
   padding: 8px 10px;
   cursor: pointer;
   display: flex;
   gap: 8px;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settings__format {
+  display: flex;
+  gap: 16px;
 }
