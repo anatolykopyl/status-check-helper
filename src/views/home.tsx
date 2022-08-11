@@ -19,9 +19,9 @@ export default function HomeView() {
 
   async function getFormatting() {
     const result = await chrome.storage.sync.get(['prefix', 'separator', 'postfix']);
-    setPrefix(result.prefix);
-    setSeparator(result.separator);
-    setPostfix(result.postfix);
+    setPrefix(result.prefix ?? '');
+    setSeparator(result.separator ?? '');
+    setPostfix(result.postfix ?? '');
   }
 
   async function getTasks() {
