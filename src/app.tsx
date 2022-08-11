@@ -6,10 +6,12 @@ import CrossIcon from './icons/cross';
 
 export function App() {
   const [tasks, setTasks] = useState({});
+  const [hostname, setHostname] = useState('');
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     getTasks()
+    getHostname()
   }, []);
 
   async function getTasks() {
@@ -17,11 +19,19 @@ export function App() {
     setTasks(result.tasks);
   }
 
+  async function getHostname() {
+    const result = await chrome.storage.sync.get(['hostname']);
+    setHostname(result.hostname);
+    console.log(result.hostname);
+  }
+
   function tasksText() {
+    const base = 'https://' + hostname + '/browse/'
+
     let value = '<ul>'
 
     for (const key in tasks) {
-      value += `<li>${key} - ${tasks[key as keyof typeof tasks]}</li>`
+      value += `<li><a href="${base + key}">${key}</a> - ${tasks[key as keyof typeof tasks]}</li>`
     }
 
     value += '</ul>'
