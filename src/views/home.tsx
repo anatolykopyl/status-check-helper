@@ -26,7 +26,7 @@ export default function HomeView() {
 
   async function getTasks() {
     const result = await chrome.storage.sync.get(['tasks']);
-    setTasks(result.tasks);
+    setTasks(result.tasks ?? {});
   }
 
   async function getHostname() {
