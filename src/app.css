@@ -17,6 +17,8 @@
 .nav {
   border-bottom: 1px solid var(--border-clr);
   padding: 16px 32px;
+  height: 64px;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,6 +27,11 @@
 .nav__title {
   margin: 0;
   font-size: 32px;
+}
+
+.nav__title__version {
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .nav__settings {

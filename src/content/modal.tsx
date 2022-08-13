@@ -26,19 +26,6 @@ function Button() {
 }
 
 export default () => {
-  const config = { childList: true, subtree: true };
-  const observer = new MutationObserver((mutationList) => {
-    for (const mutation of mutationList) {
-      const target = mutation.target as HTMLElement;
-      const headerElement = target?.querySelector?.('#jira-issue-header');
-
-      if (headerElement) {
-        insertButton(<Button />)
-      }
-    }
-  });
-
-  observer.observe(document, config);
-  console.log(window.location.hostname)
-  chrome.storage.sync.set({ hostname: window.location.hostname });
+  console.log("Modal mode")
+  insertButton(<Button />)
 }

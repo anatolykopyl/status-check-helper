@@ -3,6 +3,7 @@ import './app.css'
 import HomeView from './views/home'
 import SettingsView from './views/settings'
 import GearIcon from './icons/gear'
+import packageJson from '../package.json'
 
 export function App() {
   const [view, setView] = useState('HomeView')
@@ -14,7 +15,12 @@ export function App() {
   return (
     <>
       <nav class="nav">
-        <h1 class="nav__title">Status Check Helper</h1>
+        <h1 class="nav__title">
+          Status Check Helper
+          <small class="nav__title__version">
+            v{packageJson.version}
+          </small>
+        </h1>
         <button
           class="nav__settings"
           onClick={toggleView}

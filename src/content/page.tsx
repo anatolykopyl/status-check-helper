@@ -23,5 +23,6 @@ function Button() {
 }
 
 export default () => {
+  console.log("Page mode")
   insertButton(<Button />)
 }
