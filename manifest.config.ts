@@ -19,7 +19,7 @@ export default defineManifest(() => ({
   content_scripts: [
     {
       matches: ["https://*.atlassian.net/*"],
-      js: ["./src/content/index.ts"]
+      js: ["./src/content/index.tsx"]
     }
   ],
   permissions: [

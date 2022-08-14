@@ -1,7 +1,7 @@
 import './style.css'
-import { sendTask, insertButton } from './utils';
+import { sendTask } from './utils';
 
-function Button() {
+export default function Button() {
   const urlSearchParams = new URLSearchParams(window.location.search);
   const params = Object.fromEntries(urlSearchParams.entries());
 
@@ -23,9 +23,4 @@ function Button() {
       Add to todays bulletpoints
     </button >
   )
-}
-
-export default () => {
-  console.log("Modal mode")
-  insertButton(<Button />)
 }

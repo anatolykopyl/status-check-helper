@@ -1,7 +1,7 @@
 import './style.css'
-import { insertButton, sendTask } from './utils'
+import { sendTask } from './utils'
 
-function Button() {
+export default function Button() {
   function createTask() {
     const issueId = window.location.pathname.split('/').pop() as string;
     const issueHeader = window.document.querySelector('h1[data-test-id="issue.views.issue-base.foundation.summary.heading"]') as HTMLElement;
@@ -20,9 +20,4 @@ function Button() {
       Add to todays bulletpoints
     </button >
   )
-}
-
-export default () => {
-  console.log("Page mode")
-  insertButton(<Button />)
 }
